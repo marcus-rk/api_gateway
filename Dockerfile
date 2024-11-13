@@ -10,7 +10,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Expose port 80
-EXPOSE 80
+EXPOSE 5001
 
 # Run with gunicorn on port 80
-CMD ["gunicorn", "--bind", "0.0.0.0:80", "app:app", "--access-logfile", "-"]
+CMD ["gunicorn", "--bind", "0.0.0.0:5001", "app:app", "--access-logfile", "-"]
