@@ -1,18 +1,16 @@
-# Use a specific platform to ensure compatibility with Azure
 FROM --platform=linux/amd64 python:3.9-slim
 
-# Set the working directory inside the container
 WORKDIR /app
 
 # Copy requirements and install dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the application code into the container
-COPY *.py .
+# Copy all application files
+COPY . .
 
-# Expose port 80 to ensure it's accessible externally
+# Expose port 80
 EXPOSE 80
 
-# Command to run the app with gunicorn
-CMD ["gunicorn", "--bind", "0.0.0.0:80", "app:app"]
+# Run with gunicorn on port 80
+CMD ["gunicorn", "--bind", "0.0.0.0:80", "app:app", "--access-logfile", "-"]
