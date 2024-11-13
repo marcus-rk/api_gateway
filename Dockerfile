@@ -2,6 +2,16 @@ FROM --platform=linux/amd64 python:3.9-slim
 
 WORKDIR /app
 
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+CMD ["gunicorn", "--bind", "0.0.0.0:80", "app:app"]
+FROM --platform=linux/amd64 python:3.9-slim
+
+WORKDIR /app
+
 # Copy requirements and install dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
