@@ -12,7 +12,7 @@ SWAGGER_CONFIG = {
     ],
     "static_url_path": "/flasgger_static",
     "swagger_ui": True,
-    "specs_route": "/apidocs/",
+    "specs_route": "/docs/",
     "title": "API Gateway Documentation",
     "version": "1.0.0",
     "description": "API Gateway service with authentication and GitHub statistics",
