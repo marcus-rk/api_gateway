@@ -1,4 +1,5 @@
-FROM python:3.9-slim
+# i'm on macbook m2, therefore add platform
+FROM --platform=arm64 python:3.9-slim
 
 WORKDIR /app
 
