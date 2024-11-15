@@ -1,5 +1,4 @@
 from flasgger import Swagger
-from .config import SWAGGER_CONFIG, TEMPLATE
 
 SWAGGER_CONFIG = {
     "headers": [],
@@ -7,8 +6,8 @@ SWAGGER_CONFIG = {
         {
             "endpoint": 'apispec',
             "route": '/apispec.json',
-            "rule_filter": lambda rule: True,  # all in
-            "model_filter": lambda tag: True,  # all in
+            "rule_filter": lambda rule: True,
+            "model_filter": lambda tag: True,
         }
     ],
     "static_url_path": "/flasgger_static",
@@ -26,31 +25,15 @@ SWAGGER_CONFIG = {
             "in": "header",
             "description": "JWT token in format: Bearer <token>"
         }
-    },
-    "security": [
-        {"Bearer": []}
-    ]
+    }
 }
 
 TEMPLATE = {
     "swagger": "2.0",
     "info": {
         "title": "API Gateway",
-        "description": "API Gateway service endpoints",
-        "version": "1.0.0"
-    },
-    "consumes": [
-        "application/json",
-    ],
-    "produces": [
-        "application/json"
-    ],
-    "securityDefinitions": {
-        "Bearer": {
-            "type": "apiKey",
-            "name": "Authorization",
-            "in": "header",
-        }
+        "description": "API Gateway Documentation",
+        "version": "1.0"
     }
 }
 
