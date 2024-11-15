@@ -1,0 +1,29 @@
+Get API Gateway Information
+---
+tags:
+  - Home
+summary: "API Gateway home endpoint"
+produces:
+  - application/json
+responses:
+  200:
+    description: List of available endpoints
+    schema:
+      type: object
+      properties:
+        service:
+          type: string
+          example: "API Gateway"
+        available_endpoints:
+          type: array
+          items:
+            type: object
+            properties:
+              path:
+                type: string
+              method:
+                type: string
+              description:
+                type: string
+              body:
+                type: object

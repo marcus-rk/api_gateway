@@ -3,8 +3,10 @@ import requests
 import sqlite3
 import bcrypt
 import os
+from flasgger import Swagger, swag_from
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 from dotenv import load_dotenv
+from swagger import init_swagger
 
 # Load environment variables from .env file
 load_dotenv()
@@ -35,12 +37,16 @@ def init_db():
 # Initialize the database on startup
 init_db()
 
+# Add Swagger initialization here, after configs but before routes
+swagger = init_swagger(app)
+
 def get_db():
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
     return conn
 
 @app.route('/')
+@swag_from('swagger/home.yml')
 def home():
     return jsonify({
         "service": "API Gateway",
@@ -74,6 +80,7 @@ def home():
     })
 
 @app.route('/register', methods=['POST'])
+@swag_from('swagger/register.yml')
 def register():
     data = request.get_json()
     
@@ -99,6 +106,7 @@ def register():
         conn.close()
 
 @app.route('/login', methods=['POST'])
+@swag_from('swagger/login.yml')
 def login():
     data = request.get_json()
     
@@ -124,6 +132,7 @@ def login():
 
 @app.route('/api/github/stats', methods=['GET'])
 @jwt_required()
+@swag_from('swagger/github_stats.yml')
 def get_github_stats():
     try:
         current_user = get_jwt_identity()

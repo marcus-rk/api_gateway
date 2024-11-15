@@ -1,0 +1,50 @@
+Register new user
+---
+tags:
+  - Authentication
+summary: "Register a new user account"
+consumes:
+  - application/json
+produces:
+  - application/json
+parameters:
+  - name: body
+    in: body
+    required: true
+    schema:
+      type: object
+      properties:
+        username:
+          type: string
+          example: "johndoe"
+        password:
+          type: string
+          example: "secretpassword"
+      required:
+        - username
+        - password
+responses:
+  201:
+    description: User successfully created
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "User created successfully"
+  400:
+    description: Missing required fields
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Missing username or password"
+  409:
+    description: Username already exists
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Username already exists"
