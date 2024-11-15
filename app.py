@@ -46,7 +46,7 @@ def get_db():
     return conn
 
 @app.route('/')
-@swag_from('swagger/home.yml')
+@swag_from('swagger/docs/home.yml')
 def home():
     return jsonify({
         "service": "API Gateway",
@@ -80,7 +80,7 @@ def home():
     })
 
 @app.route('/register', methods=['POST'])
-@swag_from('swagger/register.yml')
+@swag_from('swagger/docs/register.yml')
 def register():
     data = request.get_json()
     
@@ -132,7 +132,7 @@ def login():
 
 @app.route('/api/github/stats', methods=['GET'])
 @jwt_required()
-@swag_from('swagger/github_stats.yml')
+@swag_from('swagger/docs/github_stats.yml')
 def get_github_stats():
     try:
         current_user = get_jwt_identity()
